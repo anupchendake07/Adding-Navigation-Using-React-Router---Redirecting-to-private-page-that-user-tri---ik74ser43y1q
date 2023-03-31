@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
-import LocationDisplay from './LocationDisplay';
+import React from "react";
 
-export default class Home extends Component {
-	render() {
-		return (
-			<>
-				<div>You are home</div>
-			</>
-		);
-	}
+const Home = () => {
+    return (
+        <div>You are home.</div>
+    )
 }
+export default Home;
