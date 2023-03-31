@@ -1,31 +1,36 @@
-import React, { Component, useState } from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import About from "./About";
-import Home from "./Home";
-import NoMatch from "./NoMatch";
+import React, { Component, useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../styles/App.css';
-import LocationDisplay from "./LocationDisplay";
+import Navigation from './Navigation';
+import Home from './Home';
+import About from './About';
+import NoMatch from './NoMatch';
+import LocationDisplay from './LocationDisplay';
 
-class App extends Component {
-
-    render() {
-        return (
-            <BrowserRouter>
-                <div id="main">
-                    <LocationDisplay />
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/about'}>About</Link>
-
-                    <Switch>
-                        <Route exact path={'/'} component={Home} />
-                        <Route exact path={'/about'} component={About} />
-                        <Route exact path={'/*'} component={NoMatch} />
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        )
-    }
+class AppRouter extends Component {
+	render() {
+		return (
+			<BrowserRouter>
+				<Navigation />
+				<Switch>
+					<Route exact path={'/'} component={Home} />
+					<Route path={'/about'} component={About} />
+					<Route path={'*'} component={NoMatch} />
+				</Switch>
+				<LocationDisplay />
+			</BrowserRouter>
+		);
+	}
 }
 
+class App extends Component {
+	render() {
+		return (
+			<div id="main">
+				<AppRouter />
+			</div>
+		);
+	}
+}
 
 export default App;
