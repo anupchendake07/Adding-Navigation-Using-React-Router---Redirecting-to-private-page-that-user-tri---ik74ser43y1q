@@ -1,7 +1,12 @@
-import React from "react";
-const NoMatch = () => {
-    return (
-        <div>No match</div>
-    )
+import React, { Component } from 'react';
+import LocationDisplay from './LocationDisplay';
+
+export default class NoMatch extends Component {
+	render() {
+		return (
+			<>
+				<div>No match</div>
+			</>
+		);
+	}
 }
-export default NoMatch;
