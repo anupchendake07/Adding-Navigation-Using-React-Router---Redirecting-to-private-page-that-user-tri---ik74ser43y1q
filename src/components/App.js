@@ -1,36 +1,37 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import '../styles/App.css';
-import Navigation from './Navigation';
-import Home from './Home';
-import About from './About';
-import NoMatch from './NoMatch';
-import LocationDisplay from './LocationDisplay';
+import React from "react";
+import { Link, Route, Switch, useLocation } from "react-router-dom";
 
-class AppRouter extends Component {
-	render() {
-		return (
-			<BrowserRouter>
-				<Navigation />
-				<Switch>
-					<Route exact path={'/'} component={Home} />
-					<Route path={'/about'} component={About} />
-					<Route path={'*'} component={NoMatch} />
-				</Switch>
-				<LocationDisplay />
-			</BrowserRouter>
-		);
-	}
-}
+const About = () => <div>You are on the about page</div>;
+const Home = () => <div>You are home</div>;
+const NoMatch = () => <div>No match</div>;
 
-class App extends Component {
-	render() {
-		return (
-			<div id="main">
-				<AppRouter />
-			</div>
-		);
-	}
-}
+export const LocationDisplay = () => {
+  const location = useLocation();
 
-export default App;
+  return <div data-testid="location-display">{location.pathname}</div>;
+};
+
+const App = () => (
+  <div>
+    <Link to="/">Home</Link>
+
+    <Link to="/about">About</Link>
+
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route>
+        <NoMatch />
+      </Route>
+    </Switch>
+
+    <LocationDisplay />
+  </div>
+);
+
+export default App
